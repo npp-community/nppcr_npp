@@ -98,18 +98,6 @@ SOURCE=..\lexlib\Accessor.cxx
 # End Source File
 # Begin Source File
 
-SOURCE=..\lexlib\LexerBase.cxx
-# End Source File
-# Begin Source File
-
-SOURCE=..\lexlib\LexerSimple.cxx
-# End Source File
-# Begin Source File
-
-SOURCE=..\lexlib\LexerModule.cxx
-# End Source File
-# Begin Source File
-
 SOURCE=..\src\AutoComplete.cxx
 # End Source File
 # Begin Source File
@@ -254,7 +242,19 @@ SOURCE=..\lexers\LexEiffel.cxx
 # End Source File
 # Begin Source File
 
+SOURCE=..\lexlib\LexerBase.cxx
+# End Source File
+# Begin Source File
+
 SOURCE=..\lexers\LexErlang.cxx
+# End Source File
+# Begin Source File
+
+SOURCE=..\lexlib\LexerModule.cxx
+# End Source File
+# Begin Source File
+
+SOURCE=..\lexlib\LexerSimple.cxx
 # End Source File
 # Begin Source File
 
@@ -350,6 +350,10 @@ SOURCE=..\lexers\LexNsis.cxx
 # End Source File
 # Begin Source File
 
+SOURCE=..\lexers\LexObjC.cxx
+# End Source File
+# Begin Source File
+
 SOURCE=..\lexers\LexOpal.cxx
 # End Source File
 # Begin Source File
@@ -414,6 +418,10 @@ SOURCE=..\lexers\LexScriptol.cxx
 # End Source File
 # Begin Source File
 
+SOURCE=..\lexers\LexSearchResult.cxx
+# End Source File
+# Begin Source File
+
 SOURCE=..\lexers\LexSmalltalk.cxx
 # End Source File
 # Begin Source File
@@ -459,6 +467,10 @@ SOURCE=..\lexers\LexTeX.cxx
 # Begin Source File
 
 SOURCE=..\lexers\LexTxt2tags.cxx
+# End Source File
+# Begin Source File
+
+SOURCE=..\lexers\LexUser.cxx
 # End Source File
 # Begin Source File
 

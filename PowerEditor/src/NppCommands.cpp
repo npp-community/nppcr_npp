@@ -600,8 +600,8 @@ void Notepad_plus::command(int id)
 		{
 			_nativeLangSpeaker.messageBox("ColumnModeTip",
 					_pPublicInterface->getHSelf(),
-					TEXT("Column Mode Tip"),
 					TEXT("Please use \"ALT+Mouse Selection\" or \"Alt+Shift+Arrow key\" to switch to column mode."),
+					TEXT("Column Mode Tip"),
 					MB_OK|MB_APPLMODAL);
 			break;
 		}
@@ -1938,7 +1938,7 @@ void Notepad_plus::command(int id)
 			generic_string tmp((NppParameters::getInstance())->getNppPath());
 			generic_string nppHelpPath = tmp.c_str();
 
-			nppHelpPath += TEXT("\\user.manual\\documentation\\%2Fnotepad-online-document.html");
+			nppHelpPath += TEXT("\\user.manual\\documentation\\notepad-online-document.html");
 			if (::PathFileExists(nppHelpPath.c_str()))
 				::ShellExecute(NULL, TEXT("open"), nppHelpPath.c_str(), NULL, NULL, SW_SHOWNORMAL);
 			else

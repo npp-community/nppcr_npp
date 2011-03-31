@@ -27,10 +27,12 @@
                     <Item posX = "1" posY = "13" name = "Inserir/Remover comentário"/>
                     <Item posX = "1" posY = "14" name = "Auto completar"/>
                     <Item posX = "1" posY = "15" name = "Conversão final de linha"/>
+					<Item posX = "1" posY = "16" name = "Operações com espaços"/>
                     <Item posX = "2" posY = "16" name = "Marcar todos"/>
                     <Item posX = "2" posY = "17" name = "Desmarcar todos"/>
                     <Item posX = "2" posY = "18" name = "Saltar acima"/>
                     <Item posX = "2" posY = "19" name = "Saltar abaixo"/>
+					<Item posX = "2" posY = "21" name = "Marcadores"/>
                     <Item posX = "3" posY = "4" name = "Mostrar símbolo"/>
                     <Item posX = "3" posY = "5" name = "Zoom"/>
                     <Item posX = "3" posY = "6" name = "Mover/Clonar documento atual"/>
@@ -97,7 +99,13 @@
                     <Item id = "42021" name = "&amp;Reproduzir"/>
                     <Item id = "42022" name = "Alternar comentário no bloco"/>
                     <Item id = "42023" name = "Comentário de documentação"/>
-                    <Item id = "42024" name = "Limpar espaços em excesso"/>
+					<Item id = "42042" name = "Limpar espaços à esquerda"/>
+					<Item id = "42043" name = "Limpar espaços à direita e à esquerda"/>
+					<Item id = "42044" name = "EOL para Espaços"/>
+					<Item id = "42045" name = "Remover Espaços e EOL desnecessários"/>
+					<Item id = "42046" name = "TAB para Espaço"/>
+					<Item id = "42047" name = "Espaço para TAB"/>
+                    <Item id = "42024" name = "Limpar espaços à direita"/>
                     <Item id = "42025" name = "Salvar macro atual"/>
                     <Item id = "42026" name = "Alinhar texto à direita"/>
                     <Item id = "42027" name = "Alinhar texto à esquerda"/>
@@ -158,6 +166,7 @@
                     <Item id = "43047" name = "Resultado anterior da pesquisa"/>
                     <Item id = "43048" name = "Selecionar e localizar próximo"/>
                     <Item id = "43049" name = "Selecionar e localizar anterior"/>
+                    <Item id = "43050" name = "Inverter marcadores"/>
 					<Item id = "44009" name = "Exibir somente o código"/>
                     <Item id = "44010" name = "Recolher todos níveis"/>
                     <Item id = "44011" name = "Definições do usuário..."/>
@@ -174,6 +183,7 @@
                     <Item id = "44032" name = "Modo Tela Inteira"/>
                     <Item id = "44033" name = "Retornar ao zoom padrão"/>
                     <Item id = "44034" name = "Manter sobre as outras janelas"/>
+					<Item id = "44049" name = "Resumo..."/>
                     <Item id = "44035" name = "Sincronizar rolagem vertical"/>
                     <Item id = "44036" name = "Sincronizar rolagem horizontal"/>
                     <Item id = "44041" name = "Mostrar símbolo de quebra de linha"/>
@@ -222,6 +232,9 @@
                     <Item id = "44042" name = "Ocultar linhas"/>
 					<Item id = "42040" name = "Abrir todos arquivos recentes"/>
                     <Item id = "42041" name = "Limpar lista de arquivos recentes"/>
+					<Item id = "48016" name = "Modificar atalho/Deletar macro..."/>
+					<Item id = "48017" name = "Modificar atalho/Deletar comando..."/>
+					<Item id = "48018" name = "Editar Menu de contexto"/>
 				</Commands>
             </Main>
 
@@ -347,6 +360,8 @@
 				<Item id = "20009" name = "Ext. :"/>
 				<Item id = "20012" name = "Não dif. maiúsc/minúsc"/>
 				<Item id = "20011" name = "Transparência"/>
+				<Item id = "20016" name = "Importar..."/>
+				<Item id = "20015" name = "Exportar..."/>
 				<Item id = "0" name = "Estilo de cores"/>
 				<Item id = "1" name = "Cor da fonte"/>
 				<Item id = "2" name = "Cor do fundo"/>
@@ -392,7 +407,6 @@
 					<Item id = "24314" name = "Limite fechado :"/>
                     <Item id = "24001" name = "Habilitar caractere de escape :" />
                 </Operator>
-
             </UserDefine>
 
 			<Preference title = "Preferências">
@@ -436,6 +450,12 @@
 					<Item id = "6203" name = "Seta"/>
 	                <Item id = "6204" name = "Círculo"/>
 					<Item id = "6205" name = "Caixa"/>
+                    <Item id = "6226" name = "Nenhum"/>
+
+                    <Item id="6227" name="Quebra de linha"/>
+                    <Item id="6228" name="Padrão"/>
+                    <Item id="6229" name="Alinhado"/>
+                    <Item id="6230" name="Indentado"/>
 
 					<Item id = "6206" name = "Exibir número das linhas"/>
 					<Item id = "6207" name = "Exibir margem de marcadores"/>
@@ -557,7 +577,6 @@
 					<Item id = "6814" name = "Valor válido : 1 - 9"/>
 					<Item id = "6815" name = "Mostrar dica de parâmetro a cada entrada"/>
                 </Backup>
-
 				</Preference>
 
 			<MultiMacro title = "Executar macro múltiplas vezes">
@@ -591,7 +610,6 @@
 				<Item id = "1" name = "OK"/>
 				<Item id = "2" name = "Cancelar"/>
             </ColumnEditor>
-
 		</Dialog>
     </Native-Langue>
 </NotepadPlus>

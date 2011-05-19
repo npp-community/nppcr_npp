@@ -169,6 +169,7 @@
     #define    IDM_SEARCH_SETANDFINDPREV       (IDM_SEARCH + 49)
     #define    IDM_SEARCH_INVERSEMARKS         (IDM_SEARCH + 50)
 	#define    IDM_SEARCH_DELETEUNMARKEDLINES  (IDM_SEARCH + 51)
+	#define    IDM_SEARCH_FINDCHARINRANGE      (IDM_SEARCH + 52)
 
 #define IDM_VIEW    (IDM + 4000)
     //#define    IDM_VIEW_TOOLBAR_HIDE            (IDM_VIEW + 1)
@@ -240,6 +241,8 @@
         #define    IDM_VIEW_UNFOLD_6    (IDM_VIEW_UNFOLD + 6)
         #define    IDM_VIEW_UNFOLD_7    (IDM_VIEW_UNFOLD + 7)
         #define    IDM_VIEW_UNFOLD_8    (IDM_VIEW_UNFOLD + 8)
+
+	#define    IDM_VIEW_FILESWITCHER_PANEL        (IDM_VIEW + 70)
 
     #define    IDM_VIEW_GOTO_ANOTHER_VIEW        10001
     #define    IDM_VIEW_CLONE_TO_ANOTHER_VIEW    10002

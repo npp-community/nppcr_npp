@@ -45,6 +45,7 @@ public:
         _hParent = parent2set;
     };
 
+	//Activate document in scintilla by using the internal index
 	void activateDoc(int i) const;
 
 protected:

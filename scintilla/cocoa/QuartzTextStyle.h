@@ -15,75 +15,63 @@ class QuartzTextStyle
 public:
     QuartzTextStyle()
     {
-        ATSUCreateStyle( &style );
+		styleDict = CFDictionaryCreateMutable(NULL, 1, NULL, NULL);
     }
 
     ~QuartzTextStyle()
     {
-        if ( style != NULL )
-            ATSUDisposeStyle( style );
-        style = NULL;
+		if (styleDict != NULL)
+		{
+			CFRelease(styleDict);
+			styleDict = NULL;
+		}
     }
 
-    void setAttribute( ATSUAttributeTag tag, ByteCount size, ATSUAttributeValuePtr value )
-    {
-        ATSUSetAttributes( style, 1, &tag, &size, &value );
-    }
+	CFMutableDictionaryRef getCTStyle() const
+	{
+		return styleDict;
+	}
 
-    void setAttribute( QuartzTextStyleAttribute& attribute )
-    {
-        setAttribute( attribute.getTag(), attribute.getSize(), attribute.getValuePtr() );
-    }
+	void setCTStyleColor(CGColor* inColor )
+	{
+		CFDictionarySetValue(styleDict, kCTForegroundColorAttributeName, inColor);
+	}
 
-    void getAttribute( ATSUAttributeTag tag, ByteCount size, ATSUAttributeValuePtr value, ByteCount* actualSize )
-    {
-        ATSUGetAttribute( style, tag, size, value, actualSize );
-    }
+	float getAscent() const
+	{
+		return ::CTFontGetAscent(fontRef);
+	}
 
-    template <class T>
-    T getAttribute( ATSUAttributeTag tag )
-    {
-        T value;
-        ByteCount actualSize;
-        ATSUGetAttribute( style, tag, sizeof( T ), &value, &actualSize );
-        return value;
-    }
+	float getDescent() const
+	{
+		return ::CTFontGetDescent(fontRef);
+	}
 
-    // TODO: Is calling this actually faster than calling setAttribute multiple times?
-    void setAttributes( QuartzTextStyleAttribute* attributes[], int number )
-    {
-        // Create the parallel arrays and initialize them properly
-        ATSUAttributeTag* tags = new ATSUAttributeTag[ number ];
-        ByteCount* sizes = new ByteCount[ number ];
-        ATSUAttributeValuePtr* values = new ATSUAttributeValuePtr[ number ];
+	float getLeading() const
+	{
+		return ::CTFontGetLeading(fontRef);
+	}
 
-        for ( int i = 0; i < number; ++ i )
-        {
-            tags[i] = attributes[i]->getTag();
-            sizes[i] = attributes[i]->getSize();
-            values[i] = attributes[i]->getValuePtr();
-        }
+	void setFontRef(CTFontRef inRef)
+	{
+		fontRef = inRef;
 
-        ATSUSetAttributes( style, number, tags, sizes, values );
+		if (styleDict != NULL)
+			CFRelease(styleDict);
 
-        // Free the arrays that were allocated
-        delete[] tags;
-        delete[] sizes;
-        delete[] values;
-    }
+		styleDict = CFDictionaryCreateMutable(NULL, 1, NULL, NULL);
 
-    void setFontFeature( ATSUFontFeatureType featureType, ATSUFontFeatureSelector selector )
-    {
-        ATSUSetFontFeatures( style, 1, &featureType, &selector );
-    }
+		CFDictionaryAddValue(styleDict, kCTFontAttributeName, fontRef);
+	}
 
-    const ATSUStyle& getATSUStyle() const
-    {
-        return style;
-    }
+	CTFontRef getFontRef()
+	{
+		return fontRef;
+	}
 
 private:
-    ATSUStyle style;
+	CFMutableDictionaryRef styleDict;
+	CTFontRef fontRef;
 };
 
 #endif

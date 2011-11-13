@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252" ?>
 <!--
-	German localization for Notepad++ 5.9.4
-	Last modified Sun, 1 October 2011 by Jan Schreiber.
+	German localization for Notepad++ 5.9.6.1
+	Last modified Sun, 6 November 2011 by Jan Schreiber.
 	Please e-mail errors, suggestions etc. to janschreiber(at)users.sf.net.
 -->
 <NotepadPlus>
@@ -245,7 +245,7 @@
 					<Item id = "48011" name = "&amp;Optionen ..."/>
 					<Item id = "48016" name = "Shortcut &amp;ändern/Makro löschen ..."/>
 					<Item id = "48017" name = "Shortcut &amp;ändern/Befehl löschen ..."/>
-					<Item id = "48018" name = "&amp;Kontextmenü editieren ..."/>
+					<Item id = "48018" name = "&amp;Kontextmenü anpassen ..."/>
 					<Item id = "49000" name = "&amp;Ausführen ..."/>
 					<Item id = "50000" name = "Funktionsvervollständigung"/>
 					<Item id = "50001" name = "Wortvervollständigung"/>
@@ -621,7 +621,55 @@
 				<Item id = "2" name = "A&amp;bbrechen"/>
 			</ColumnEditor>
 		</Dialog>
+		<ProjectManager>
+			<PanelTitle name="Projektverwaltung" />
+			<WorkspaceRootName name="Arbeitsbereich" />
+			<Menus>
+				<Entries>
+					<Item id="0" name="Arbeitsbereich" />
+					<Item id="1" name="Bearbeiten" />
+				</Entries>
+				<WorkspaceMenu>
+					<Item id="3122" name="Neuer Arbeitsbereich" />
+					<Item id="3123" name="Arbeitsbereich öffnen" />
+					<Item id="3124" name="Arbeitsbereich neu laden" />
+					<Item id="3125" name="Speichern" />
+					<Item id="3126" name="Speichern unter ..." />
+					<Item id="3127" name="Kopie speichern unter ..." />
+					<Item id="3121" name="Neues Projekt hinzufügen" />
+				</WorkspaceMenu>
+				<ProjectMenu>
+					<Item id="3111" name="Umbenennen" />
+					<Item id="3112" name="Projektordner hinzufügen" />
+					<Item id="3113" name="Dateien hinzufügen ..." />
+					<Item id="3114" name="Entfernen" />
+					<Item id="3117" name="Dateien aus Verzeichnis hinzufügen ..."/>
+				</ProjectMenu>
+				<FolderMenu>
+					<Item id="3111" name="Umbenennen" />
+					<Item id="3112" name="Projektordner hinzufügen" />
+					<Item id="3113" name="Dateien hinzufügen ..." />
+					<Item id="3114" name="Entfernen" />
+					<Item id="3117" name="Dateien aus Verzeichnis hinzufügen ..."/>
+				</FolderMenu>
+				<FileMenu>
+					<Item id="3111" name="Umbenennen" />
+					<Item id="3115" name="Entfernen" />
+					<Item id="3116" name="Dateipfad ändern" />
+				</FileMenu>
+			</Menus>
+		</ProjectManager>
+		<MessageBox>
+			<ContextMenuXmlEditWaring title="Kontextmenü anpassen" message="Durch Bearbeiten der Datei contextMenu.xml können Sie das Kontextmenü von Notepad++ anpassen.&#x0A;Nach dem Bearbeiten müssen Sie Notepad++ neu starten." />
+			<NppHelpAbsentWaring title="Hilfedatei nicht gefunden" message="&#x0A;ist nicht vorhanden. Bitte laden Sie die Hilfedateien von der Notepad++-Website herunter." />
+			<SaveCurrentModifWaring title="Änderungen speichern" message="Bitte speichern Sie Ihre Änderungen.&#x0A;Fortfahren?" />
+			<LoseUndoAbilityWaring title="Lose Undo Ability Warning" message="Nicht alle Änderungen können rückgängig gemacht werden.&#x0A;Fortfahren?" />
+			<CannotMoveDoc title="In neue Instanz verschieben" message="Dokument wurde geändert. Bitte speichern und erneut versuchen." />
+			<DocReloadWarning title="Neu laden" message="Sind Sie sicher, dass Sie die Datei neu laden und die in Notepad++ gemachten Änderungen verwerfen wollen?" />
+			<FileLockedWarning title="Speichern fehlgeschlagen" message="Bitte überprüfen Sie, ob die Datei in einem anderen Programm geöffnet ist." />
+			<FileAlreadyOpenedInNpp title="" message="Die Datei ist bereits in Notepad++ geöffnet." />
+			<DeleteFileFailed title="Datei löschen" message="Löschen der Datei fehlgeschlagen." />
+		</MessageBox>
 	</Native-Langue>
 </NotepadPlus>
-
 

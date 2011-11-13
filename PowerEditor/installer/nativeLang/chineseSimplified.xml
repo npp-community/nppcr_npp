@@ -23,11 +23,12 @@
 					<Item posX="1" posY="9" name="复制到剪切板"/>
 					<Item posX="1" posY="10" name="缩进"/>
 					<Item posX="1" posY="11" name="转换视图"/>
-					<Item posX="1" posY="12" name="执行行"/>
+					<Item posX="1" posY="12" name="行操作"/>
 					<Item posX="1" posY="13" name="注释/取消注释"/>
 					<Item posX="1" posY="14" name="自动完成"/>
                     <Item posX="1" posY="15" name="档案格式转换"/>
-					<Item posX="2" posY="16" name="颜色标记"/>
+					<Item posX="1" posY="16" name="空白操作"/>
+					<Item posX="2" posY="16" name="标记所有"/>
                     <Item posX="2" posY="17" name="清除颜色标记"/>
                     <Item posX="2" posY="18" name="到上一个颜色标记"/>
                     <Item posX="2" posY="19" name="到下一个颜色标记"/>
@@ -98,7 +99,13 @@
 					<Item id="42021" name="回放(&amp;P)"/>
 					<Item id="42022" name="添加/删除单行注释"/>
 					<Item id="42023" name="区块注释"/>
-					<Item id="42024" name="移除行尾空白"/>
+					<Item id="42042" name="移除行首空格"/>
+					<Item id="42043" name="移除行首和行尾空格"/>
+					<Item id="42044" name="EOL转空格"/>
+					<Item id="42045" name="移除非必需的空白和 EOL"/>
+					<Item id="42046" name="TAB 转空格"/>
+					<Item id="42047" name="空格转 TAB"/>
+					<Item id="42024" name="移除行尾空格"/>
 					<Item id="42025" name="保存录制宏"/>
 					<Item id="42026" name="文字方向从右到左"/>
 					<Item id="42027" name="文字方向从左到右"/>
@@ -176,6 +183,7 @@
 					<Item id="44032" name="全屏模式"/>
 					<Item id="44033" name="撤消缩放"/>
 					<Item id="44034" name="置顶模式"/>
+					<Item id="44049" name="摘要..."/>
 					<Item id="44035" name="垂直同步滚动"/>
 					<Item id="44036" name="水平同步滚动"/>
 					<Item id="44041" name="显示换行符"/>
@@ -200,6 +208,7 @@
 					<Item id="10003" name="移动到新窗口"/>
 					<Item id="10004" name="在新窗口中打开"/>
 
+
 					<Item id="46001" name="语言格式设置..."/>
 					<Item id="46080" name="用户自定义"/>
 					<Item id="47000" name="关于 Notepad++..."/>
@@ -223,8 +232,9 @@
 					<Item id="44042" name="隐藏行"/>
 					<Item id="42040" name="打开文件列表"/>
 					<Item id="42041" name="清除文件列表"/>
-					<Item id="48016" name="变更或清除宏..."/>
-					<Item id="48017" name="变更或清除运行选项..."/>
+					<Item id="48016" name="管理快捷键..."/>
+					<Item id="48017" name="管理快捷键..."/>
+					<Item id="48018" name="编辑弹出菜单"/>
 				</Commands>
 			</Main>
 			<Splitter>
@@ -319,7 +329,6 @@
 					<Item id="2207" name="背景色"/>
 					<Item id="2208" name="字体名称 :"/>
 					<Item id="2209" name="字体大小 :"/>
-					<Item id="2211" name="格式名称 :"/>
 					<Item id="2212" name="色彩格式"/>
 					<Item id="2213" name="字体格式"/>
 					<Item id="2214" name="默认扩展名 :"/>
@@ -336,6 +345,7 @@
 					<Item id="2231" name="使用全局斜体样式"/>
 					<Item id="2232" name="使用全局下划线样式"/>
 				</SubDialog>
+
 			</StyleConfig>
 
 			<UserDefine title="自定义语言格式">
@@ -347,6 +357,8 @@
 				<Item id="20009" name="扩展名 :"/>
 				<Item id="20012" name="忽略大小写"/>
 				<Item id="20011" name="透明度"/>
+				<Item id="20016" name="导入..."/>
+				<Item id="20015" name="导出..."/>
 				<Item id="0" name="色彩格式"/>
 				<Item id="1" name="前景色"/>
 				<Item id="2" name="背景色"/>
@@ -391,6 +403,7 @@
 					<Item id="24311" name="界定起始 :"/>
 					<Item id="24314" name="界定终止 :"/>
 				</Operator>
+                <Item id="24001" name="启用转义字符 :"/>
 			</UserDefine>
 			<Preference title="首选项">
 				<Item id="6001" name="关闭"/>
@@ -418,7 +431,6 @@
 					<Item id="6122" name="隐藏 (按下 Alt 或 F10 显示)"/>
 					<Item id="6123" name="界面语言"/>
 				</Global>
-
 				<Scintillas title="编辑">
 					<Item id="6216" name="插入符设置"/>
 					<Item id="6217" name="宽度 :"/>

@@ -699,6 +699,11 @@ static void ColouriseRebolDoc(unsigned int startPos, int length, int initStyle, 
 				for (i=10; IsASpaceOrTab(styler.SafeGetCharAt(sc.currentPos+i, 0)); i++);
 				if (sc.GetRelative(i) == '[')
 					sc.SetState(SCE_REBOL_DEFAULT);
+			} else if (sc.MatchIgnoreCase("world")) {
+				int i;
+				for (i=5; IsASpaceOrTab(styler.SafeGetCharAt(sc.currentPos+i, 0)); i++);
+				if (sc.GetRelative(i) == '[')
+					sc.SetState(SCE_REBOL_DEFAULT);
 			}
 		} else if (sc.state == SCE_REBOL_TAG) {
 			if (sc.ch == '>') {

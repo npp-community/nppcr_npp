@@ -147,6 +147,7 @@ LEXOBJS=\
 	$(DIR_O)\LexPython.obj \
 	$(DIR_O)\LexR.obj \
 	$(DIR_O)\LexRebol.obj \
+	$(DIR_O)\LexRSP.obj \
 	$(DIR_O)\LexRuby.obj \
 	$(DIR_O)\LexScriptol.obj \
 	$(DIR_O)\LexSearchResult.obj \
@@ -410,6 +411,8 @@ $(DIR_O)\LexPython.obj: ..\lexers\LexPython.cxx $(LEX_HEADERS)
 $(DIR_O)\LexR.obj: ..\lexers\LexR.cxx $(LEX_HEADERS)
 
 $(DIR_O)\LexRebol.obj: ..\lexers\LexRebol.cxx $(LEX_HEADERS)
+
+$(DIR_O)\LexRSP.obj: ..\lexers\LexRSP.cxx $(LEX_HEADERS)
 
 $(DIR_O)\LexRuby.obj: ..\lexers\LexRuby.cxx $(LEX_HEADERS)
 

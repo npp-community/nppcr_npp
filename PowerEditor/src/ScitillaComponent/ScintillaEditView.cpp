@@ -120,6 +120,8 @@ LanguageName ScintillaEditView::langNames[L_EXTERNAL+1] = {
 {TEXT("powershell"),	TEXT("PowerShell"),			TEXT("Windows PowerShell"),								L_POWERSHELL,	SCLEX_POWERSHELL},
 {TEXT("r"),				TEXT("R"),					TEXT("R programming language"),							L_R,			SCLEX_R},
 {TEXT("jsp"),			TEXT("JSP"),				TEXT("JavaServer Pages script file"),					L_JSP,			SCLEX_HTML},
+{TEXT("rebol"),			TEXT("REBOL"),				TEXT("REBOL file"),										L_REBOL,		SCLEX_REBOL},
+{TEXT("rsp"),			TEXT("RSP"),				TEXT("RSP file"),										L_RSP,			SCLEX_RSP},
 {TEXT("ext"),			TEXT("External"),			TEXT("External"),										L_EXTERNAL,		SCLEX_NULL}
 };
 
@@ -1260,7 +1262,13 @@ void ScintillaEditView::defineDocType(LangType typeDoc)
 
 		case L_RUBY :
             setRubyLexer(); break;
-
+        
+		case L_REBOL :
+             setRebolLexer(); break;
+		
+		case L_RSP :
+             setRSPLexer(); break;
+			 
 		case L_SMALLTALK :
             setSmalltalkLexer(); break;
 

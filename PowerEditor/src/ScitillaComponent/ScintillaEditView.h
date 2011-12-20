@@ -825,6 +825,14 @@ protected:
 	void setYamlLexer() {
 		setLexer(SCLEX_YAML, L_YAML, LIST_0);
 	};
+	
+	void setRebolLexer(){
+		setLexer(SCLEX_REBOL, L_REBOL, LIST_0);
+	};
+	
+	void setRSPLexer(){
+		setLexer(SCLEX_RSP, L_RSP, LIST_0);
+	};
 
     //--------------------
 

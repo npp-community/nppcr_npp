@@ -1045,6 +1045,15 @@ SectionGroup "Themes" Themes
 		File ".\themes\Zenburn.xml"
 	SectionEnd
 
+	Section "Solarized" Solarized
+		SetOutPath "$INSTDIR\themes"
+		File ".\themes\Solarized.xml"
+
+	Section "Solarized Light" Solarized-light
+		SetOutPath "$INSTDIR\themes"
+		File ".\themes\Solarized-light.xml"
+	SectionEnd
+
 SectionGroupEnd
 
 Section /o "As default html viewer" htmlViewer

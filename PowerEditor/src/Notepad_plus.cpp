@@ -1033,42 +1033,177 @@ bool Notepad_plus::matchInList(const TCHAR *fileName, const vector<generic_strin
 	return false;
 }
 
-void Notepad_plus::wsTabConvert(bool tab2ws)
+void Notepad_plus::wsTabConvert(spaceTab whichWay)
 {
-	generic_string tab = TEXT("	");
-	generic_string blank2search = tab;
-	generic_string blank2replace = tab;
-
-	// Get tab size (ws length)
 	int tabWidth = _pEditView->execute(SCI_GETTABWIDTH);
-	generic_string ws(tabWidth, ' ');
+	int docLength = int(_pEditView->execute(SCI_GETLENGTH)) + 1;
+	if (docLength < 2)
+		return;
+	int count = 0;
+	int column = 0;
+	int counter = 0;
+	int tabStop = tabWidth - 1;   // remember, counting from zero !
+	bool onlyLeading = false;
+	bool nonSpaceFound = false;
 
-	// tab2ws or ws2tab ?
-	if (tab2ws)
+	char * source = new char[docLength];
+	if (source == NULL)
+		return;
+	_pEditView->execute(SCI_GETTEXT, docLength, (LPARAM)source);
+
+	if (whichWay == tab2Space)
 	{
-		blank2replace = ws;
+		// count how many tabs are there
+		for (const char * ch=source; *ch; ++ch)
+		{
+		if (*ch == '\t')
+			++count;
+		}
+		if (count == 0)
+		{
+			delete [] source;
+			return;
+		}
 	}
-	else
+	// allocate tabwidth-1 chars extra per tab, just to be safe
+	size_t newlen = docLength + count * (tabWidth - 1) + 1;
+	char * destination = new char[newlen];
+	if (destination == NULL)
 	{
-		blank2search= ws;
+		delete [] source;
+		return;
+	}
+    char * dest = destination;
+
+	switch (whichWay)
+	{
+		case tab2Space:
+		{
+			// rip through each line in the file
+			for (const char * ch = source; *ch; ++ch)
+			{
+				if (*ch == '\t')
+				{
+					size_t insertTabs = tabWidth - (column % tabWidth);
+					for (size_t i = 0; i<insertTabs; ++i)
+					{
+						*dest++ = ' ';
+					}
+					column += insertTabs;
+				}
+				else
+				{
+					*dest++ = *ch;
+					if ((*ch == '\n') || (*ch == '\r'))
+						column = 0;
+					else
+						++column;
+				}
+			}
+			*dest = '\0';
+			break;
+		}
+		case space2TabLeading:
+		{
+			onlyLeading = true;
+		}
+		case space2TabAll:
+		{
+			bool nextChar = false;
+            for (const char * ch=source; *ch; ++ch)
+			{
+				if (nonSpaceFound == false)
+				{
+					while (*(ch + counter) == ' ')
+					{
+						if ((column + counter) == tabStop)
+						{
+							tabStop += tabWidth;
+							if (counter >= 1)        // counter is counted from 0, so counter >= max -1
+							{
+								*dest++ = '\t';
+								ch += counter;
+								column += counter + 1;
+								counter = 0;
+								nextChar = true;
+								break;
+							}
+							else if (*(ch+1) == ' ' || *(ch+1) == '\t')  // if followed by space or TAB, convert even a single space to TAB
+							{
+								*dest++ = '\t';
+								ch++;
+								column += 1;
+								counter = 0;
+							}
+							else       // single space, don't convert it to TAB
+							{
+								*dest++ = *ch;
+								column += 1;
+								counter = 0;
+								nextChar = true;
+								break;
+							}
+						}
+						else
+							++counter;
+					}
+
+					if (nextChar == true)
+					{
+						nextChar = false;
+						continue;
+					}
+
+                    if (*ch == ' ' && *(ch + counter) == '\t') // spaces "absorbed" by a TAB on the right
+                    {
+                        *dest++ = '\t';
+                        ch += counter;
+                        column = tabStop + 1;
+						tabStop += tabWidth;
+                        counter = 0;
+                        continue;
+                    }
+				}
+
+				if (onlyLeading == true && nonSpaceFound == false)
+					nonSpaceFound = true;
+
+				if (*ch == '\n' || *ch == '\r')
+				{
+                    *dest++ = *ch;
+					column = 0;
+					tabStop = tabWidth - 1;
+					nonSpaceFound = false;
+				}
+                else if (*ch == '\t')
+                {
+                    *dest++ = *ch;
+                    column = tabStop + 1;
+                    tabStop += tabWidth;
+                    counter = 0;
+                }
+                else
+                {
+                    *dest++ = *ch;
+                    ++column;
+                    counter = 0;
+
+                    if (column > 0 && column % tabWidth == 0)
+                        tabStop += tabWidth;
+                }
+			}
+		    *dest = '\0';
+            break;
+		}
 	}
 
-	FindOption env;
-	env._str2Search = blank2search;
-	env._str4Replace = blank2replace;
-	env._searchType = FindRegex;
-
-	// do the replacement
 	_pEditView->execute(SCI_BEGINUNDOACTION);
-	_findReplaceDlg.processAll(ProcessReplaceAll, &env, true);
-
-	// if white space to TAB, we replace the remain white spaces by TAB
-	if (!tab2ws)
-	{
-		env._str2Search = TEXT(" +");
-		_findReplaceDlg.processAll(ProcessReplaceAll, &env, true);
-	}
+	_pEditView->execute(SCI_SETTEXT, 0, (LPARAM)destination);
 	_pEditView->execute(SCI_ENDUNDOACTION);
+
+	// clean up
+	delete [] source;
+	delete [] destination;
 }
 
 void Notepad_plus::doTrim(trimOp whichPart)
@@ -1484,6 +1619,7 @@ void Notepad_plus::checkClipboard()
 	bool canPaste = (_pEditView->execute(SCI_CANPASTE) != 0);
 	enableCommand(IDM_EDIT_CUT, hasSelection, MENU | TOOLBAR);
 	enableCommand(IDM_EDIT_COPY, hasSelection, MENU | TOOLBAR);
+
 	enableCommand(IDM_EDIT_PASTE, canPaste, MENU | TOOLBAR);
 	enableCommand(IDM_EDIT_DELETE, hasSelection, MENU | TOOLBAR);
 	enableCommand(IDM_EDIT_UPPERCASE, hasSelection, MENU);
@@ -4488,6 +4624,7 @@ int Notepad_plus::getLangFromMenuName(const TCHAR * langName)
 
 generic_string Notepad_plus::getLangFromMenu(const Buffer * buf)
 {
+
 	int	id;
 	generic_string userLangName;
 	const int nbChar = 32;
